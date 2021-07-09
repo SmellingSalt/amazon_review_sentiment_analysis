@@ -13,7 +13,7 @@ RUN usermod -aG sudo nonrootuser
 #Important things to get
 RUN apt-get install wget -y
 RUN apt install git -y
-RUN apt-get install python3-venv -y
+# RUN apt-get install python3-venv -y
 #This switches user into 'nonroot' and changes working directory into home of that user
 USER nonrootuser
 RUN mkdir /home/nonrootuser/codes
