@@ -1,11 +1,23 @@
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+  </style> 
   body {
     background-color: white;
   }
   h1 {
     color: #16a085;
+    padding-left: 1%;
+    padding-right: 1%;    
+    font-family: 'Roboto', sans-serif;
   }
   p {
     color: red;
+    max-width: 90%;
+    text-align: justify;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
   }
   nav{
     margin: 0px;
@@ -16,19 +28,19 @@
   #main_title{
     color: #16a085;
     cursor : pointer ;
+    text-align: center;
+    font-size: 50px;
 }
   #submenu{
-    display: inline-block;
-    margin-right: 35px;
-    padding : 0px 30px ; 
-    border: none ; 
-    
-    font-size : 25px ;
-    cursor : pointer ;
-    position : relative ; 
-    overflow : hidden ; 
+    font-size : 30px ;
+    cursor : pointer ; */
+    /* overflow : hidden ;  */
     z-index: 1 ; 
   }
   #submenu_entries{
       padding-left: 10%;
+      text-decoration: none;
+      color: #16a085;
   }
+  #submenu_entries:last-child {
+    margin-right: 0px; }
