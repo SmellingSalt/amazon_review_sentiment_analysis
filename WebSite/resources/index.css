@@ -1,0 +1,34 @@
+  body {
+    background-color: white;
+  }
+  h1 {
+    color: #16a085;
+  }
+  p {
+    color: red;
+  }
+  nav{
+    margin: 0px;
+    margin-top: 6px;
+    padding: 0px;
+    list-style-type: none; 
+  }
+  #main_title{
+    color: #16a085;
+    cursor : pointer ;
+}
+  #submenu{
+    display: inline-block;
+    margin-right: 35px;
+    padding : 0px 30px ; 
+    border: none ; 
+    
+    font-size : 25px ;
+    cursor : pointer ;
+    position : relative ; 
+    overflow : hidden ; 
+    z-index: 1 ; 
+  }
+  #submenu_entries{
+      padding-left: 10%;
+  }
