@@ -15,7 +15,8 @@ RUN apt-get install wget -y
 RUN apt install git -y
 #Getting Flask
 RUN pip install Flask
-RUN pip install transformers
+#GETTING BACKEND LIBRARIRES
+RUN pip install transformers requests beautifulsoup4 pandas numpy amazon-product-review-scraper wordcloud
 # RUN apt-get install python3-venv -y
 #This switches user into 'nonroot' and changes working directory into home of that user
 USER nonrootuser
