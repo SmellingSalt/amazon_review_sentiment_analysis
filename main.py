@@ -1,28 +1,43 @@
-#%%
+#%% ARGS
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--url",required=True ,type=str, help="The amazon URL")
+args = parser.parse_args()
+#%% NLTK
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import numpy as np
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-
-#%% Sentiment Analyser
+import string
+#%% Cleaning Text
 # Using from https://towardsdatascience.com/nlp-preprocessing-with-nltk-3c04ee00edc0
-stop_words = stopwords.words('english')
-#Stemming. This is done so that car,cars, car's etc all get mapped to car
+try:
+    stop_words = stopwords.words('english')
+except LookupError:
+    import nltk
+    nltk.download('stopwords')
+    nltk.download('punkt')
+    nltk.download('wordnet')
+    stop_words = stopwords.words('english')
+#Stemming. This is done so that words like car,cars, car's etc all get mapped to car
 porter = PorterStemmer()
 wnl = WordNetLemmatizer() #Needed so profile doesn't get mapped to profil. This happens since profiling is also a word
 def text_cleaner(review):
     review = review.lower() #Lower Case
-    text_p="".join([char for char in text if char not in string.punctuation] #Remove Punctuation
+    text_p="".join([char for char in review if char not in string.punctuation]) #Remove Punctuation
     words = word_tokenize(text_p) #Use this to split words.    
-    filtered_words = [word for word in words if word not in stop_words]
+    filtered_words = " ".join([word for word in words if word not in stop_words])
     wnl.lemmatize(filtered_words) if wnl.lemmatize(filtered_words).endswith('e') else porter.stem(filtered_words)
-    return words
+    return filtered_words
 #%% URL Parser and WebScrapper
-url=input("Enter the URL \n")
-# url="https://www.amazon.in/Lays-Potato-Chips-American-Flavour/dp/B08MXP4YDG?pd_rd_w=SDZmN&pf_rd_p=1d9db8b1-280f-4e5c-9d16-085f9071cd55&pf_rd_r=70N63XE3K21ZZRFBWJSE&pd_rd_r=5b5cfcf3-2f59-444d-979e-f04f7833bbe5&pd_rd_wg=y5DVz&pd_rd_i=B08MXP4YDG&psc=1&ref_=pd_bap_d_rp_1_i"
+# url=input("Enter the URL \n")
+url=args.url
 amazon_site=url[12:21]
 asin=url.split("/")[5]
+#%%
 #https://github.com/SinghalHarsh/amazon-product-review-scraper
 from amazon_product_review_scraper import amazon_product_review_scraper
+print("Starting webscrapping...")
 review_scraper = amazon_product_review_scraper(amazon_site=amazon_site, product_asin=asin, sleep_time=2.5,end_page=20)
 reviews_df = review_scraper.scrape()
 content=[text_cleaner(reviews) for reviews in reviews_df["content"].to_list()]
@@ -48,7 +63,6 @@ wordcloud = WordCloud(background_color="white",width = 1000, height = 500).gener
 plt.figure(figsize=(15,8))
 plt.imshow(wordcloud)
 plt.axis('off')
-print(freq)
 plt.savefig("wordcloud.png",
             bbox_inches ="tight",
             pad_inches = 1,
