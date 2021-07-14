@@ -1,6 +1,7 @@
 #Build it with docker build . -t tensorflow
 # Create an image with docker run tensorflow --gpus all
-FROM tensorflow/tensorflow
+# FROM tensorflow/tensorflow
+FROM alpine
 #The next command sets root password s 1234 inside the container
 RUN echo "root:123456" | chpasswd
 # This adds a user named 'nonrootuser' and creates password as 1234 and adds them to sudoers list
@@ -16,7 +17,7 @@ RUN apt install git -y
 #Getting Flask
 RUN pip install Flask
 #GETTING BACKEND LIBRARIRES
-RUN pip install transformers requests beautifulsoup4 pandas numpy amazon-product-review-scraper wordcloud
+RUN pip install pandas numpy amazon-product-review-scraper wordcloud nltk
 # RUN apt-get install python3-venv -y
 #This switches user into 'nonroot' and changes working directory into home of that user
 USER nonrootuser

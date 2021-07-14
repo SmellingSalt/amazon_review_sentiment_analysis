@@ -1,20 +1,22 @@
 #%%
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer, PorterStemmer
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+# import torch
+# import requests
+# from bs4 import BeautifulSoup #Used to scrape data from HTML docs
+# import re #Something like grep in linux. It searches for patterns, substrings in walls of text. It is also needed for webscrapping
 
 #%% Sentiment Analyser
-# Using from https://towardsdatascience.com/nlp-preprocessing-with-nltk-3c04ee00edc0
-stop_words = stopwords.words('english')
-#Stemming. This is done so that car,cars, car's etc all get mapped to car
-porter = PorterStemmer()
-wnl = WordNetLemmatizer() #Needed so profile doesn't get mapped to profil. This happens since profiling is also a word
+# Using Model from https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment?
+tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment') #Get the tokenizer object used to train the nn
+model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment') #Get the neural network
+def sentiment_score(review):
+    tokens = tokenizer.encode(review, return_tensors='pt')
+    result = model(tokens)
+    return int(torch.argmax(result.logits))+1
 def text_cleaner(review):
-    review = review.lower() #Lower Case
-    text_p="".join([char for char in text if char not in string.punctuation] #Remove Punctuation
-    words = word_tokenize(text_p) #Use this to split words.    
-    filtered_words = [word for word in words if word not in stop_words]
-    wnl.lemmatize(filtered_words) if wnl.lemmatize(filtered_words).endswith('e') else porter.stem(filtered_words)
+    tokens = tokenizer.encode(review)
+    ids=tokenizer.convert_ids_to_tokens(tokens)
+    words=tokenizer.convert_tokens_to_string(ids)[6:-6]
     return words
 #%% URL Parser and WebScrapper
 url=input("Enter the URL \n")
@@ -25,11 +27,14 @@ asin=url.split("/")[5]
 from amazon_product_review_scraper import amazon_product_review_scraper
 review_scraper = amazon_product_review_scraper(amazon_site=amazon_site, product_asin=asin, sleep_time=2.5,end_page=20)
 reviews_df = review_scraper.scrape()
-content=[text_cleaner(reviews) for reviews in reviews_df["content"].to_list()]
-print("Got Reviews and Cleaned Text")
+print("Got Reviews")
+# %% 
+# reviews_df['sentiment'] = reviews_df['content'].apply(lambda x: sentiment_score(x[:512]))
+print("Predicted Sentiment")
 #%% Get Word Frequencies
 import collections
 freq = collections.Counter()
+content=[text_cleaner(reviews) for reviews in reviews_df["content"].to_list()]
 for review in content:
     freq.update(review.split())
 print("Got Words and Frequencies")
