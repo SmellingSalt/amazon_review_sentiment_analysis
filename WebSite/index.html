@@ -1,34 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href=resources/index.css> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment Analysis</title>
-</head>
-<body>
-<div>
-    <h1 id="main_title">Website</h1>
-    <div id='submenu'>
-            <nav >
-                <a id="submenu_entries" , href="./index.html">Home</a>
-                <a id="submenu_entries" , href="./index.html">Source Code</a>
-                <a id="submenu_entries" , href="./index.html">Contact </a>
-            </nav>       
-    </div>
-</div>
-<div class="row">
-    <h1> What is this about? </h1>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium non ab quibusdam ipsa dicta minima labore tempore expedita cumque excepturi iure nulla quia a tenetur rerum quisquam, placeat ipsum animi.</p>
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ullam blanditiis fuga rerum aliquam, inventore expedita error tempore pariatur, labore repellat, aperiam similique eveniet quaerat. Iste perspiciatis repudiandae dolorem at!</p>
-</div>
-    <h1>Heading 2</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas eius molestiae voluptatum aut, ducimus quaerat consequuntur sequi provident obcaecati mollitia vel tempore? Neque alias a aperiam praesentium consequatur cumque earum.</p>
-</body>
-<form>
-    <input type="text" placeholder="Enter The URL">
-    <button>Check</button>
-</form>
-</html>
-
+{%extends "base.html"%}
+{%block content%}
+    <form action="url_check" method="POST">
+        <input type="text" placeholder="Enter The URL" name="url">
+        <button>Check</button>
+        <!-- <input type="submit"> -->
+    </form>
+{%endblock content%}
