@@ -1,11 +1,12 @@
 amazon-product-review-scraper==0.9
+asgiref==3.4.1
 beautifulsoup4==4.9.3
 certifi==2021.5.30
 charset-normalizer==2.0.1
 click==8.0.1
 cycler==0.10.0
+Django==3.2.5
 fake-useragent==0.1.11
-Flask==2.0.1
 idna==3.2
 itsdangerous==2.0.1
 Jinja2==3.0.1
@@ -24,6 +25,7 @@ regex==2021.7.6
 requests==2.26.0
 six==1.16.0
 soupsieve==2.2.1
+sqlparse==0.4.1
 tqdm==4.61.2
 urllib3==1.26.6
 Werkzeug==2.0.1

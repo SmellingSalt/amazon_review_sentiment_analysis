@@ -1,2 +1,5 @@
 src_pkg
 *.png
+venv
+*.pyc
+.DS_Store
