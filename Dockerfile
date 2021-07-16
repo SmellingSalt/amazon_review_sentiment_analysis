@@ -25,9 +25,9 @@ COPY ./resources/ /resources/
 RUN python3 /resources/nltk_prerequisites.py
 USER root
 RUN rm -rf /resources
+#This switches user into 'nonroot' and changes working directory into home of that user
 USER nonrootuser
 # RUN apt-get install python3-venv -y
-#This switches user into 'nonroot' and changes working directory into home of that user
 RUN mkdir /home/nonrootuser/codes
 COPY main.py /home/nonrootuser/codes
 WORKDIR /home/nonrootuser/codes
