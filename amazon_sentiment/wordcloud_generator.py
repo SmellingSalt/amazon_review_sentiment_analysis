@@ -65,7 +65,7 @@ def wordcloud_gen(url):
     plt.figure(figsize=(15,8))
     plt.imshow(wordcloud)
     plt.axis('off')
-    plt.savefig(f"static/{asin}.png",
+    plt.savefig(f"amazon_sentiment/static/{asin}.png",
                 bbox_inches ="tight",
                 pad_inches = 1,
                 transparent = True)

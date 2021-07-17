@@ -17,10 +17,11 @@ RUN apt install git -y
 RUN apt-get install python3-pip -y
 #GETTING BACKEND LIBRARIRES
 # pandas numpy requests amazon-product-review-scraper wordcloud nltk
-RUN pip install -r requirements.txt
 #INSTALL NLTK DEPENDENCIES
 USER nonrootuser
-COPY ./resources/ /resources/
+COPY ./amazon_sentiment/resources/ /resources/
+COPY requirements.txt /resources/
+RUN pip install -r /resources/requirements.txt
 RUN python3 /resources/nltk_prerequisites.py
 USER root
 RUN rm -rf /resources
@@ -28,5 +29,6 @@ RUN rm -rf /resources
 USER nonrootuser
 # RUN apt-get install python3-venv -y
 RUN mkdir /home/nonrootuser/codes
-COPY main.py /home/nonrootuser/codes
+# COPY run.py /home/nonrootuser/codes
+# COPY amazon_sentiment /home/nonrootuser/codes/
 WORKDIR /home/nonrootuser/codes
