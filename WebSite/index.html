@@ -1,8 +1,19 @@
 {%extends "base.html"%}
 {%block content%}
-    <form action="url_check" method="POST">
-        <input type="text" placeholder="Enter The URL" name="url">
-        <button>Check</button>
+    <!-- <form  method="POST" action=""></form> Empty action implies it returns the form to the same method that called it.-->
+    <form  method="POST" action="url_check">
+        {{form.hidden_tag()}}
+        <!--  The above line is used with the SECRET_KEY to protect against certain attacks. -->
+        <fieldset>
+            <legend class="form_style">Input the Amazon URL</legend>
+            <div style="text-align: center;">
+                {{form.url.label(class_="form_style")}}
+                {{form.url(class_="form_style")}}
+            </div>
+            <div style="text-align: center;">{{form.submit}}</div>
+        </fieldset>
+        <!-- <input type="text" placeholder="Enter The URL" name="url"> -->
+        <!-- <button>Check</button> -->
         <!-- <input type="submit"> -->
     </form>
 {%endblock content%}

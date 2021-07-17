@@ -7,6 +7,8 @@ click==8.0.1
 cycler==0.10.0
 Django==3.2.5
 fake-useragent==0.1.11
+Flask==2.0.1
+Flask-WTF==0.15.1
 idna==3.2
 itsdangerous==2.0.1
 Jinja2==3.0.1
@@ -30,3 +32,4 @@ tqdm==4.61.2
 urllib3==1.26.6
 Werkzeug==2.0.1
 wordcloud==1.8.1
+WTForms==2.3.3

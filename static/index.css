@@ -21,13 +21,24 @@
   body {
     background-color: white;
   }
+  fieldset{
+    border: 0px solid #16a085;
+    width: 30%;
+    margin:auto;
+  }
   h1 {
     color: #16a085;
     padding-left: 1%;
     padding-right: 1%;    
     font-family: 'robotoregular', sans-serif;
   }
-  p {
+  .form_style{
+    color: #16a085;
+    text-align: center;
+    font-family: 'robotoregular', sans-serif;
+    font-weight: 800;
+  }
+  p{
     color: #0000008c;
     max-width: 90%;
     text-align: justify;
@@ -62,3 +73,4 @@
   }
   #submenu_entries:last-child {
     margin-right: 0px; }
+
