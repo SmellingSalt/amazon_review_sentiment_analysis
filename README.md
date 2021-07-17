@@ -1,5 +1,8 @@
 # amazon_review_sentiment_analysis
-
+Run the server with
+```bash
+docker-compose up
+```
 ## Setup with VSCode
 
 More information [can be found here.](https://code.visualstudio.com/docs/remote/create-dev-container#_set-up-a-folder-to-run-in-a-container) 
