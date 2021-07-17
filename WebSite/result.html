@@ -1,6 +1,8 @@
 {%extends "base.html"%}
 {%block content%}
-<img src="{{url_for('static',filename='wordcloud.png')}}" alt="this">
+<div style="margin:auto;">
+    <img src="{{url_for('static',filename=value)}}" style="object-fit: contain;" alt="Couldn't find the image">
+</div>
 <!-- <form action="" method="POST">
 </form> -->
 {%endblock content%}

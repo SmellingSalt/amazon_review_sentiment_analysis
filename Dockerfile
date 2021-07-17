@@ -15,10 +15,9 @@ RUN usermod -aG sudo nonrootuser
 RUN apt-get install wget -y
 RUN apt install git -y
 RUN apt-get install python3-pip -y
-#Getting Flask
-RUN pip install Flask
 #GETTING BACKEND LIBRARIRES
-RUN pip install pandas numpy requests amazon-product-review-scraper wordcloud nltk
+# pandas numpy requests amazon-product-review-scraper wordcloud nltk
+RUN pip install -r requirements.txt
 #INSTALL NLTK DEPENDENCIES
 USER nonrootuser
 COPY ./resources/ /resources/

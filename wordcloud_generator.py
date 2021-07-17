@@ -40,7 +40,7 @@ def wordcloud_gen(url):
     #https://github.com/SinghalHarsh/amazon-product-review-scraper
     from amazon_product_review_scraper import amazon_product_review_scraper
     print("Starting webscrapping...")
-    review_scraper = amazon_product_review_scraper(amazon_site=amazon_site, product_asin=asin, sleep_time=2.5,end_page=20)
+    review_scraper = amazon_product_review_scraper(amazon_site=amazon_site, product_asin=asin, sleep_time=2.5,end_page=2)
     reviews_df = review_scraper.scrape()
     content=[text_cleaner(reviews) for reviews in reviews_df["content"].to_list()]
     print("Got Reviews and Cleaned Text")
@@ -65,10 +65,11 @@ def wordcloud_gen(url):
     plt.figure(figsize=(15,8))
     plt.imshow(wordcloud)
     plt.axis('off')
-    plt.savefig("static/wordcloud.png",
+    plt.savefig(f"static/{asin}.png",
                 bbox_inches ="tight",
                 pad_inches = 1,
                 transparent = True)
+    return asin+".png"
     # %%
     # import itertools
     # y=[".",")"]
