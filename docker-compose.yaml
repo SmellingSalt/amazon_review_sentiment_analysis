@@ -4,7 +4,7 @@ services:
         build:
             context: ./
         ports:
-            - 127.0.0.1:4000:4000
+            - 4001:4000
         environment:
             - FLASK_KEY=2138597c1af69610e4e26f1f78134b3d
         volumes: 

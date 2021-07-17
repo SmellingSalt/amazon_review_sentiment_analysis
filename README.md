@@ -3,6 +3,10 @@ Run the server with
 ```bash
 docker-compose up
 ```
+The host port `4001` is mapped to the container's `4000` so if you want to access the website from another device in the same network, use the following address 
+```
+<YOUR_HOST_IP_ADDRESS>:40001
+```
 ## Setup with VSCode
 
 More information [can be found here.](https://code.visualstudio.com/docs/remote/create-dev-container#_set-up-a-folder-to-run-in-a-container) 
