@@ -1,6 +1,3 @@
-#Build it with docker build . -t tensorflow
-# Create an image with docker run tensorflow --gpus all
-# FROM tensorflow/tensorflow
 FROM ubuntu:latest
 #The next command sets root password s 1234 inside the container
 RUN echo "root:123456" | chpasswd

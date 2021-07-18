@@ -9,9 +9,6 @@ from amazon_sentiment import app
 @app.route("/home",methods=['GET', 'POST']) #Both these routes are handled by this function
 def home():
     form=url_input()
-    # asin="B08697MJFD"
-    # value=str(asin)+".png"
-    # return render_template("result.html",value=value)
     return render_template("index.html",form=form)
 
 @app.route("/url_check", methods=["GET","POST"]) #Both these routes are handled by this function
